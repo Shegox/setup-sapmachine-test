@@ -18,8 +18,9 @@ jobs:
   sapmachine:
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        java-package: [jdk, jre]
         version: [21, 23-ea, 21.0.2+2-ea, 17, 13.0.1, 13]
+        os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
   # This workflow contains a single job called "build"
 
@@ -30,4 +31,5 @@ jobs:
         with: 
           distribution: 'sapmachine' # See 'Supported distributions' for available options
           java-version: ${{ matrix.version }}
+          java-package: ${{ matrix.java-package }}
       - run: java -version
