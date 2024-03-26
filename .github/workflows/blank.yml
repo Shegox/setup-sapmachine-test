@@ -26,5 +26,5 @@ jobs:
       - uses: Shegox/setup-java@main
         with: 
           distribution: 'sapmachine' # See 'Supported distributions' for available options
-          java-version: '23'
+          java-version: '23-ea'
       - run: java -version
