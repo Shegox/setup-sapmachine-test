@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: check latest
+name: alpine-docker
 
 # Controls when the workflow will run
 on:
@@ -24,6 +24,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - run: env
+      - run: node -e 'console.log(process)'
       - uses: Shegox/setup-java@main
         with: 
           distribution: 'sapmachine'
