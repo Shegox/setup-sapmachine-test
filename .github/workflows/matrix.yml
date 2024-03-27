@@ -23,6 +23,10 @@ jobs:
           container: "alpine:latest"
         - os: windows-latest
           container: "alpine:latest"
+        - version: 13
+          container: "alpine:latest"
+        - version: 13.0.1
+          container: "alpine:latest"
     runs-on: ${{ matrix.os }}
   # This workflow contains a single job called "build"
     container:
