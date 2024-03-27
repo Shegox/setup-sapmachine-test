@@ -16,12 +16,12 @@ jobs:
       matrix:
         java-package: [jdk, jre]
         version: [21, 23-ea, 21.0.2+2-ea, 17, 13.0.1, 13]
-        os: [ubuntu-latest, macos-latest, macos-14, windows-latest]
+        # macos-14 is ARM based
+        # macos-12 is x86 based
+        os: [ubuntu-latest, macos-12, macos-14, windows-latest]
         container: ['', "alpine:latest"]
         exclude:
-        - os: macos-latest
-          container: "alpine:latest"
-        - os: macos-14
+        - os: macos-12
           container: "alpine:latest"
         - os: windows-latest
           container: "alpine:latest"
