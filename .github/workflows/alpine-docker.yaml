@@ -24,7 +24,6 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - run: env
-      - run: node -e 'console.log(process)'
       - uses: Shegox/setup-java@main
         with: 
           distribution: 'sapmachine'
