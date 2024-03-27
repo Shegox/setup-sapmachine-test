@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         java-package: [jdk, jre]
-        version: [11, 13.0.1]
+        version: [21, 17]
        
     runs-on: ubuntu-latest
     container:
