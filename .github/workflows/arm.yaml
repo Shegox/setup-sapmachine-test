@@ -1,0 +1,42 @@
+# This is a basic workflow to help you get started with Actions
+
+name: alpine-docker
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  sapmachine:
+    strategy:
+      matrix:
+        java-package: [jdk, jre]
+        version: [21, 17]
+        image: ["ubuntu:latest", "alpine:latest"]
+       
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ matrix.image}}
+      options: --platform linux/arm64
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Set up QEMU - arm
+        if: ${{ runner.arch == 'X86' || runner.arch == 'X64' }}
+        id: qemu-arm64
+        uses: docker/setup-qemu-action@v1
+        with:
+          image: tonistiigi/binfmt:latest
+          platforms: arm64
+
+      - uses: Shegox/setup-java@main
+        with: 
+          distribution: 'sapmachine'
+          java-version: ${{ matrix.version }}
+          java-package: ${{ matrix.java-package }}
+          check-latest: true
+      - run: java -version
